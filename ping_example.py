@@ -90,7 +90,7 @@ def main():
 
     mask:int = 0xffffffff & ~((1 << (32 - prefix)) - 1)
 
-    raw_ip = int(ipaddress.ip_daress(ip))
+    raw_ip = int(ipaddress.ip_address(ip))
     network_id = mask & raw_ip
     for host_id in range(host_range):
         ip = socket.inet_ntoa(int.to_bytes(network_id + host_id, 4, "big"))
