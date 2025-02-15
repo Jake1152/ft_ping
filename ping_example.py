@@ -21,7 +21,7 @@ def checksum(data) -> int:
   s = ~s & 0xFFFF
   return s
 
-def send_ICMP(sock:socket.socket, ip:str):
+def send_icmp(sock:socket.socket, ip:str):
   type = 8
   code = 0
   csum = 0
@@ -78,7 +78,7 @@ def main():
         exit()
 
     if len(address)==2:
-        ip, prefix_str = adress
+        ip, prefix_str = address
         prefix:int = int(prefix_str)
     else:
         ip = address[0]
@@ -100,10 +100,8 @@ def main():
 
     for tmp in ping_response:
         tmp:dict
-        if ping_respinse[tmp] == True:
+        if ping_response[tmp] == True:
             print(tmp)
 
 main()
 quit()
-
-
