@@ -1,21 +1,32 @@
 NAME = ft_ping
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+SRCS = ft_ping.c
+OBJS = $(SRCS:.c=.o)
+RM = rm -f
 
-$(NAME) : ft_ping.o
-	gcc -o ft_ping ft_ping.o
+%.o : %.c
+	$(CC) $(CFLAGS) -c $^ -o $@
 
-ft_ping.o : ft_ping.c
-	gcc -c -o ft_ping.o ft_ping.c
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^
 
-all : 
-	gcc -o $(NAME) 
+all : $(NAME)
 
 clean :
-	rm *.o ft_ping
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
 
 re :
-	make clean
+	make fclean
 	make all
 
-#target: dependency
-#(tab)command
+.PHONY: all clean fclean re
+
+# target: dependency
+# (tab)command
+# $@: 현재 타겟의 이름
+# $^: 현재 타켓의 종속 항목 리스트
 
